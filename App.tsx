@@ -1,7 +1,7 @@
 import { StatusBar } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-import { AppNavigator } from './src/navigation';
+import { AppNavigator } from '@/navigation';
 
 function App() {
   return (

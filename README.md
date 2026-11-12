@@ -22,7 +22,15 @@ src/
 
 Feature code should stay within its own directory unless it is genuinely shared. Shared UI stays in `components/ui`; cross-feature coordination belongs at the navigation or app level.
 
-# Getting Started
+## Import and data ownership conventions
+
+- Use `@/…` for imports that cross a module boundary, for example `@/theme` or `@/features/habits`.
+- Use relative imports only within the same feature or module. Do not reach into another feature's internal files.
+- Every reusable module exposes its public API from its `index.ts`. ESLint rejects deep alias imports into features and shared UI.
+- Shared domain models live once in `src/types`. The initial habit models are exported from `@/types` for habits, calendar, and analytics to reuse.
+- Persistent habit data has one boundary: `HabitRepository` in `@/storage`. Features may derive or cache view state, but do not maintain competing persisted copies.
+
+## Getting Started
 
 # Getting Started
 
