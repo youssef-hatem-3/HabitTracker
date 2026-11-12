@@ -1,4 +1,28 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+Habit Flow is a React Native habit tracker organized with a feature-based architecture.
+
+## Project structure
+
+```text
+src/
+├── components/ui/       # Reusable presentational components
+├── features/            # Feature-owned screens, state, and components
+│   ├── habits/
+│   ├── monthly-plans/
+│   ├── calendar/
+│   ├── analytics/
+│   ├── onboarding/
+│   └── settings/
+├── navigation/          # App-level navigation boundary
+├── theme/               # Shared design tokens
+├── storage/             # Persistent-data adapters
+├── hooks/               # Shared React hooks
+├── types/               # Shared TypeScript types
+└── utils/               # Framework-independent helpers
+```
+
+Feature code should stay within its own directory unless it is genuinely shared. Shared UI stays in `components/ui`; cross-feature coordination belongs at the navigation or app level.
+
+# Getting Started
 
 # Getting Started
 
