@@ -1,5 +1,15 @@
 Habit Flow is a React Native habit tracker organized with a feature-based architecture.
 
+The shared theme in `src/theme` follows the HabitFlow Monthly Plans Redesign
+Stitch design system (project `12158965502173323158`). Plus Jakarta Sans
+(Regular, SemiBold, Bold) and Inter (Regular, SemiBold) static fonts are bundled
+for both platforms; the SIL Open Font License files are kept beside the theme.
+Android resolves `700` through `PlusJakartaSans_bold.ttf` and `600` through
+dedicated SemiBold family names. `textSecondary` is darker than the design's
+muted swatch so normal text meets 4.5:1 contrast on screen and card surfaces.
+The sample screen in `AppNavigator` uses a safe area and scrolls when system
+text scaling needs more room.
+
 ## Project structure
 
 ```text

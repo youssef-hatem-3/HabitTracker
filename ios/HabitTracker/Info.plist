@@ -74,5 +74,13 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Inter.ttf</string>
+		<string>InterSemiBold.ttf</string>
+		<string>PlusJakartaSans.ttf</string>
+		<string>PlusJakartaSansSemiBold.ttf</string>
+		<string>PlusJakartaSans_bold.ttf</string>
+	</array>
 </dict>
 </plist>
