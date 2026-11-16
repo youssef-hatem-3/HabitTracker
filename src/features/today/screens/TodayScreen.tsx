@@ -1,11 +1,21 @@
-import { ScrollView, Text, View } from 'react-native';
+import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import type { CompositeScreenProps } from '@react-navigation/native';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { Pressable, ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-export function TodayScreen() {
+import type { BottomTabParamList, RootStackParamList } from '@/navigation/types';
+
+type TodayScreenProps = CompositeScreenProps<
+  BottomTabScreenProps<BottomTabParamList, 'Today'>,
+  NativeStackScreenProps<RootStackParamList, 'MainTabs'>
+>;
+
+export function TodayScreen({ navigation }: TodayScreenProps) {
   return (
     <View className="flex-1 bg-background">
       <SafeAreaView className="flex-1">
-        <ScrollView contentContainerClassName="flex-grow justify-center px-4">
+        <ScrollView contentContainerClassName="flex-grow justify-center px-4 py-6">
           <View className="w-full max-w-[440px] self-center">
             <Text className="mb-2 font-body-semibold text-xs uppercase tracking-[1.5px] text-primary">
               HABITFLOW
@@ -31,6 +41,26 @@ export function TodayScreen() {
                 gone.
               </Text>
             </View>
+            <Pressable
+              accessibilityRole="button"
+              className="mt-6 rounded-xl bg-primary p-4"
+              onPress={() =>
+                navigation.navigate('MonthlyPlan', { month: '2026-11' })
+              }>
+              <Text className="text-center font-body-semibold text-white">
+                Open Monthly Plan
+              </Text>
+            </Pressable>
+            <Pressable
+              accessibilityRole="button"
+              className="mt-3 rounded-xl border border-primary p-4"
+              onPress={() =>
+                navigation.navigate('HabitDetails', { habitId: 'habit-123' })
+              }>
+              <Text className="text-center font-body-semibold text-primary">
+                Open Habit Details
+              </Text>
+            </Pressable>
           </View>
         </ScrollView>
       </SafeAreaView>
