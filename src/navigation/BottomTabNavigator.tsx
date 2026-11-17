@@ -53,7 +53,6 @@ export function BottomTabNavigator() {
           tabBarStyle: {
             backgroundColor: colors.surface,
             borderTopColor: colors.outline,
-            paddingTop: 10
           },
 
           tabBarLabelStyle: {

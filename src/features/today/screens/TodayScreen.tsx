@@ -14,8 +14,11 @@ type TodayScreenProps = CompositeScreenProps<
 export function TodayScreen({ navigation }: TodayScreenProps) {
   return (
     <View className="flex-1 bg-background">
-      <SafeAreaView className="flex-1">
-        <ScrollView contentContainerClassName="flex-grow justify-center px-4 py-6">
+      {/* The tab bar owns the bottom safe-area inset. */}
+      <SafeAreaView className="flex-1" edges={['top', 'left', 'right']}>
+        <ScrollView
+          contentInsetAdjustmentBehavior="never"
+          contentContainerClassName="flex-grow justify-center px-4 py-6">
           <View className="w-full max-w-[440px] self-center">
             <Text className="mb-2 font-body-semibold text-xs uppercase tracking-[1.5px] text-primary">
               HABITFLOW

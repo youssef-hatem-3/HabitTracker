@@ -1,5 +1,7 @@
+import type { PropsWithChildren } from 'react';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, ScrollView, Text } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 import type { RootStackParamList } from './types';
 
@@ -7,9 +9,24 @@ type MonthlyPlanProps = NativeStackScreenProps<RootStackParamList, 'MonthlyPlan'
 type HabitDetailsProps = NativeStackScreenProps<RootStackParamList, 'HabitDetails'>;
 type EditHabitProps = NativeStackScreenProps<RootStackParamList, 'EditHabit'>;
 
+function DetailScreenLayout({ children }: PropsWithChildren) {
+  return (
+    // The native stack header owns the top inset; these screens have no tab bar.
+    <SafeAreaView
+      className="flex-1 bg-background"
+      edges={['left', 'right', 'bottom']}>
+      <ScrollView
+        contentInsetAdjustmentBehavior="never"
+        contentContainerClassName="flex-grow p-6">
+        {children}
+      </ScrollView>
+    </SafeAreaView>
+  );
+}
+
 export function MonthlyPlanScreen({ navigation, route }: MonthlyPlanProps) {
   return (
-    <View className="flex-1 bg-background p-6">
+    <DetailScreenLayout>
       <Text className="font-heading text-2xl text-primary">Monthly Plan</Text>
       <Text className="mt-3 font-body text-base text-text">
         Month: {route.params.month}
@@ -20,7 +37,7 @@ export function MonthlyPlanScreen({ navigation, route }: MonthlyPlanProps) {
         onPress={() => navigation.goBack()}>
         <Text className="text-center font-body-semibold text-white">Go Back</Text>
       </Pressable>
-    </View>
+    </DetailScreenLayout>
   );
 }
 
@@ -28,7 +45,7 @@ export function HabitDetailsScreen({ navigation, route }: HabitDetailsProps) {
   const { habitId } = route.params;
 
   return (
-    <View className="flex-1 bg-background p-6">
+    <DetailScreenLayout>
       <Text className="font-heading text-2xl text-primary">Habit Details</Text>
       <Text className="mt-3 font-body text-base text-text">
         Habit ID: {habitId}
@@ -41,17 +58,17 @@ export function HabitDetailsScreen({ navigation, route }: HabitDetailsProps) {
           Edit Habit
         </Text>
       </Pressable>
-    </View>
+    </DetailScreenLayout>
   );
 }
 
 export function EditHabitScreen({ route }: EditHabitProps) {
   return (
-    <View className="flex-1 bg-background p-6">
+    <DetailScreenLayout>
       <Text className="font-heading text-2xl text-primary">Edit Habit</Text>
       <Text className="mt-3 font-body text-base text-text">
         Editing habit: {route.params.habitId}
       </Text>
-    </View>
+    </DetailScreenLayout>
   );
 }
