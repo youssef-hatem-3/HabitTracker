@@ -43,6 +43,7 @@ Feature code should stay within its own directory unless it is genuinely shared.
 - Use relative imports only within the same feature or module. Do not reach into another feature's internal files.
 - Every reusable module exposes its public API from its `index.ts`. ESLint rejects deep alias imports into features and shared UI.
 - Shared domain models live once in `src/types`. The initial habit models are exported from `@/types` for habits, calendar, and analytics to reuse.
+- Monthly plans, daily schedules, and dated habit definitions follow the [domain model rules and example](src/types/README.md).
 - Persistent habit data has one boundary: `HabitRepository` in `@/storage`. Features may derive or cache view state, but do not maintain competing persisted copies.
 
 ## Getting Started

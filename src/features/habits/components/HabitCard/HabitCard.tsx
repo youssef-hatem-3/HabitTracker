@@ -4,7 +4,7 @@ import type { ViewProps } from 'react-native';
 import { Icon } from '@/components/ui';
 import type { IconName } from '@/components/ui';
 import { colors } from '@/theme';
-import type { Habit, HabitId } from '@/types';
+import type { HabitId } from '@/types';
 
 export type HabitCardTone = 'primary' | 'secondary' | 'blue' | 'purple';
 
@@ -17,7 +17,8 @@ export interface HabitCardProps
     | 'accessibilityLabel'
     | 'accessibilityHint'
   > {
-  habit: Pick<Habit, 'id' | 'name'>;
+  /** Name resolved from the definition version for the displayed date. */
+  habit: { id: HabitId; name: string };
   description?: string;
   icon?: IconName;
   tone?: HabitCardTone;
