@@ -1,10 +1,11 @@
 import type { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
 import type { CompositeScreenProps } from '@react-navigation/native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { Pressable, ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import type { BottomTabParamList, RootStackParamList } from '@/navigation/types';
+import { Button } from '@/components/ui';
 
 type TodayScreenProps = CompositeScreenProps<
   BottomTabScreenProps<BottomTabParamList, 'Today'>,
@@ -23,7 +24,7 @@ export function TodayScreen({ navigation }: TodayScreenProps) {
             <Text className="mb-2 font-body-semibold text-xs uppercase tracking-[1.5px] text-primary">
               HABITFLOW
             </Text>
-            <Text className="font-heading text-[28px] leading-[34px] tracking-[-0.25px] text-text">
+            <Text className="font-heading text-[28px] font-bold leading-[34px] tracking-[-0.25px] text-text">
               A little progress every day.
             </Text>
             <Text className="mt-3 font-body text-base leading-6 text-text-secondary">
@@ -44,26 +45,25 @@ export function TodayScreen({ navigation }: TodayScreenProps) {
                 gone.
               </Text>
             </View>
-            <Pressable
-              accessibilityRole="button"
-              className="mt-6 rounded-xl bg-primary p-4"
+            <Button
+              label="Open Monthly Plan"
+              fullWidth
+              size="lg"
+              className="mt-6"
               onPress={() =>
                 navigation.navigate('MonthlyPlan', { month: '2026-11' })
-              }>
-              <Text className="text-center font-body-semibold text-white">
-                Open Monthly Plan
-              </Text>
-            </Pressable>
-            <Pressable
-              accessibilityRole="button"
-              className="mt-3 rounded-xl border border-primary p-4"
+              }
+            />
+            <Button
+              label="Open Habit Details"
+              variant="secondary"
+              fullWidth
+              size="lg"
+              className="mt-3"
               onPress={() =>
                 navigation.navigate('HabitDetails', { habitId: 'habit-123' })
-              }>
-              <Text className="text-center font-body-semibold text-primary">
-                Open Habit Details
-              </Text>
-            </Pressable>
+              }
+            />
           </View>
         </ScrollView>
       </SafeAreaView>

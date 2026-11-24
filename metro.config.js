@@ -11,5 +11,6 @@ const config = {};
 
 module.exports = withNativeWind(
   mergeConfig(getDefaultConfig(__dirname), config),
-  { input: './global.css' },
+  // Stitch's Tailwind source uses a 16px root; NativeWind defaults to 14px.
+  { input: './global.css', inlineRem: 16 },
 );

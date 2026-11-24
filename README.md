@@ -10,6 +10,11 @@ muted swatch so normal text meets 4.5:1 contrast on screen and card surfaces.
 The sample screen in `AppNavigator` uses a safe area and scrolls when system
 text scaling needs more room.
 
+Reusable NativeWind controls live in `src/components/ui`, with `HabitCard` in
+`src/features/habits/components`. See the [component API and examples](src/components/ui/README.md).
+These components use Stitch's original muted swatch, radius overrides, and
+Material Symbols. Metro uses a 16px root to match the Stitch source dimensions.
+
 ## Project structure
 
 ```text

@@ -16,6 +16,7 @@ export const colors = {
   onSecondaryContainer: '#114235',
   text: '#191C1B',
   textSecondary: '#58655E',
+  muted: '#707974',
   outline: '#E2E8E5',
   outlineStrong: '#CBD5D0',
   streakAmber: '#D97706',
