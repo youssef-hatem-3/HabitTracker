@@ -76,6 +76,39 @@ For November 14, a future date resolver selects `Read 10 pages`; for November
 15, it selects `Read 20 pages`. `HabitCard` receives the resolved `{ id, name }`
 for the displayed day, with completion supplied independently.
 
+## Local calendar-date utilities
+
+Import `formatLocalDate`, `parseHabitDate`, and `isValidHabitDate` through
+`@/utils`. Keys use exactly `YYYY-MM-DD`, with Gregorian years `0001`–`9999`.
+The parser validates month lengths and leap years without creating a `Date`.
+Whitespace, timestamp strings, missing padding, and impossible dates are rejected.
+
+```ts
+import { formatLocalDate, isValidHabitDate, parseHabitDate } from '@/utils';
+
+// Uses the device's local year/month/day, even near midnight.
+const key = formatLocalDate(new Date(2026, 10, 24, 0, 30)); // '2026-11-24'
+if (key !== null) {
+  // Safe to use as a calendar-day key.
+}
+
+const parts = parseHabitDate('2024-02-29'); // { year: 2024, month: 2, day: 29 }
+if (parts !== null) {
+  // parts.month uses the 1–12 MonthNumber type.
+}
+
+parseHabitDate('2026-02-30'); // null
+isValidHabitDate('2026-02-30'); // false
+formatLocalDate(new Date(Number.NaN)); // null
+```
+
+Formatting returns `null` for an invalid `Date` or a local year outside the
+supported range. Parsing returns `null` for invalid input; validation returns
+`false`. Callers must handle these results before saving or displaying dates.
+These helpers do not mutate inputs or convert to UTC. Keys contain no timezone;
+formatting uses the device's current local timezone. Do not create day keys with
+`toISOString()` or interpret a key with `new Date(key)`.
+
 `HabitCompletion` and the existing `HabitRepository` methods remain available.
-The DailyCompletion model and repository extensions belong to HAB-50; local
-date utilities belong to HAB-49. These models add no storage implementation.
+The DailyCompletion model and repository extensions belong to HAB-50. These
+models and utilities add no storage implementation or calendar navigation helpers.
